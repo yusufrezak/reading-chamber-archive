@@ -54,7 +54,7 @@ DNS per [GitHub's docs](https://docs.github.com/en/pages/configuring-a-custom-do
 
 Just open `index.html` in any browser. No build step, no server needed.
 
-## What's included out of the box
+## Updates
 
-Three episodes seeded as examples (Ep. 43, 39, 38) so you can see filtering and
-search behave correctly. Replace, expand, or delete as you go.
+- All episodes are included.
+- Several books may contain inaccurate information about author, exact title and subtitle, publication year, and link.
