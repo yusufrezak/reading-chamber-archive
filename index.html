@@ -1,0 +1,2110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Reading Chamber Archive — books mentioned, by episode</title>
+<meta name="description" content="An unofficial, browsable archive of books discussed on The Reading Chamber YouTube channel by Pram & Pras.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #131817;
+    --bg-soft:   #1A1F1E;
+    --bg-row:    #1E2423;
+    --ink:       #EDE6D6;
+    --ink-dim:   #9A9183;
+    --ink-faint: #5E5851;
+    --accent:    #D4A05D;
+    --accent-hi: #F0BA72;
+    --rule:      #2A302F;
+    --rule-strong: #3A413F;
+    --shadow: 0 1px 0 var(--rule);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
+  a:hover, a:focus-visible { color: var(--accent-hi); border-bottom-color: var(--accent-hi); }
+  a:focus-visible { outline: 2px solid var(--accent-hi); outline-offset: 2px; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- Header ---- */
+  header.site {
+    padding: 56px 0 36px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin: 0 0 14px;
+  }
+  h1.site-title {
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.05;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+  h1.site-title em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .lede {
+    color: var(--ink-dim);
+    max-width: 56ch;
+    font-size: 16px;
+    margin: 0 0 24px;
+  }
+  .lede a { color: var(--ink); border-bottom-color: var(--rule-strong); }
+
+  /* ---- Stats ---- */
+  .stats {
+    display: flex;
+    gap: 28px;
+    margin: 28px 0 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .stats b {
+    display: block;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-size: 28px;
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  /* ---- Controls ---- */
+  .controls {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg);
+    padding: 18px 0 16px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 32px;
+  }
+  .controls-row {
+    display: grid;
+    grid-template-columns: 1fr 220px auto;
+    gap: 12px;
+    align-items: center;
+  }
+  @media (max-width: 720px) {
+    .controls-row { grid-template-columns: 1fr; }
+  }
+  .search, .filter {
+    background: var(--bg-soft);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    padding: 11px 14px;
+    font: inherit;
+    font-size: 15px;
+    border-radius: 0;
+    transition: border-color .15s;
+    width: 100%;
+  }
+  .search:focus, .filter:focus { outline: none; border-color: var(--accent); }
+  .search::placeholder { color: var(--ink-faint); }
+  .clear {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-dim);
+    padding: 11px 16px;
+    font: inherit;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color .15s, border-color .15s;
+  }
+  .clear:hover { color: var(--ink); border-color: var(--rule-strong); }
+  .result-count {
+    margin: 14px 0 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ---- Episode sections ---- */
+  main { padding-bottom: 80px; }
+  .episode {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .episode:last-child { border-bottom: none; }
+  .ep-head {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 24px;
+    align-items: baseline;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 600px) {
+    .ep-head { grid-template-columns: 1fr; gap: 8px; }
+  }
+  .ep-num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    padding-top: 8px;
+  }
+  .ep-title {
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-size: clamp(22px, 2.6vw, 30px);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .ep-meta {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .ep-meta a { color: var(--ink-dim); border-bottom-color: var(--rule-strong); }
+  .ep-meta a:hover { color: var(--accent-hi); border-bottom-color: var(--accent-hi); }
+
+  /* ---- Book list ---- */
+  .books {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-left: 120px;
+  }
+  @media (max-width: 600px) {
+    .books { margin-left: 0; }
+  }
+  .book {
+    display: grid;
+    grid-template-columns: 32px 1fr 180px 60px;
+    gap: 18px;
+    padding: 14px 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .book:last-child { border-bottom: 1px solid var(--rule); }
+  @media (max-width: 720px) {
+    .book {
+      grid-template-columns: 28px 1fr;
+      gap: 4px 14px;
+    }
+    .book .author, .book .year { grid-column: 2; }
+  }
+  .book .idx {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+  }
+  .book .title {
+    font-family: "IBM Plex Serif", serif;
+    font-size: 17px;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+  .book .title a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .book .title a:hover { color: var(--accent-hi); border-bottom-color: var(--accent-hi); }
+  .book .author {
+    font-size: 14px;
+    color: var(--ink-dim);
+  }
+  .book .year {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--ink-dim);
+    text-align: right;
+  }
+  @media (max-width: 720px) {
+    .book .year { text-align: left; }
+  }
+
+  /* ---- Empty / footer ---- */
+  .empty {
+    padding: 60px 0;
+    text-align: center;
+    color: var(--ink-dim);
+    font-family: "IBM Plex Serif", serif;
+    font-style: italic;
+    font-size: 18px;
+  }
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 32px 0 64px;
+    color: var(--ink-faint);
+    font-size: 13px;
+  }
+  footer p { margin: 0 0 8px; }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="site">
+    <p class="eyebrow">Unofficial Archive · The Reading Chamber</p>
+    <h1 class="site-title">Books from <em>The Reading Chamber</em></h1>
+    <p class="lede">
+      A browsable database of books discussed on
+      <a href="https://www.youtube.com/@TheReadingChamber-ID" target="_blank" rel="noopener">The Reading Chamber</a>,
+      the YouTube channel by Pramudya A. Oktavinanda and Prasetya Dwicahya. Search any title or author, or filter by episode.
+    </p>
+    <div class="stats">
+      <div><b id="stat-books">0</b>Books indexed</div>
+      <div><b id="stat-eps">0</b>Episodes covered</div>
+      <div><b id="stat-authors">0</b>Distinct authors</div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="controls-row">
+      <input type="search" id="q" class="search" placeholder="Search title or author…" autocomplete="off">
+      <select id="ep-filter" class="filter">
+        <option value="">All episodes</option>
+      </select>
+      <button id="clear" class="clear" type="button">Clear</button>
+    </div>
+    <p class="result-count" id="count"></p>
+  </div>
+
+  <main id="main"></main>
+
+  <footer>
+    <p>An independent project. Not affiliated with The Reading Chamber.</p>
+    <p>Spot a missing book or mistake? Open an issue on the GitHub repo.</p>
+  </footer>
+
+</div>
+
+<!-- =========================================================
+     DATA — add new episodes below.
+     Schema for each entry:
+       {
+         episode: <number>,
+         title: "Episode title",
+         date: "YYYY-MM-DD" or "" if unknown,
+         url: "https://www.youtube.com/watch?v=…" or "",
+         guest: "Guest name" or "",
+         books: [
+           { title, author, year, link, note? },
+           …
+         ]
+       }
+     Newest episodes first.
+========================================================= -->
+<script>
+window.READING_CHAMBER_DATA = [
+
+  {
+    episode: 43,
+    title: "Blueprint for Leadership | How to Run A Government",
+    date: "2026-06-13",
+    url: "https://www.youtube.com/watch?v=710oKYFv5Ic",
+    guest: "",
+    books: [
+      { title: "Poor Economics: A Radical Rethinking of the Way to Fight Global Poverty",
+        author: "Abhijit V. Banerjee & Esther Duflo",
+        year: 2011,
+        link: "https://www.amazon.co.uk/Poor-Economics-Rethinking-Poverty-Way/dp/1586487984"
+      },
+      { title: "Gambling on Development: Why Some Countries Win and Others Lose",
+        author: "Stefan Dercon",
+        year: 2022,
+        link: "https://www.amazon.co.uk/Gambling-Development-Countries-Others/dp/1787385624"
+      },
+      { title: "How China Escaped the Poverty Trap",
+        author: "Yuen Yuen Ang",
+        year: 2016,
+        link: "https://www.amazon.co.uk/Escaped-Poverty-Cornell-Studies-Political/dp/1501700200"
+      },
+      { title: "The Power of Creative Destruction: Economic Upheavals and the Wealth of Nations",
+        author: "Philippe Aghion, Céline Antonin, & Simon Bunel",
+        year: 2021,
+        link: "https://www.amazon.co.uk/Power-Creative-Destruction-Economic-Upheaval/dp/067429209X"
+      },
+      { title: "Government versus Markets: The Changing Economic Role of the State",
+        author: "Vito Tanzi",
+        year: 2011,
+        link: "https://www.amazon.co.uk/Government-versus-Markets-Changing-Economic/dp/1107641066"
+      },
+      { title: "In the Service of the Republic: The Art and Science of Economic Policy",
+        author: "Vijay Kelkar & Ajay Shah",
+        year: 2019,
+        link: "https://www.amazon.co.uk/Service-Republic-Science-Economic-Policy/dp/0670093325"
+      },
+      { title: "The Entrepreneurial State: Debunking Public vs. Private Sector Myths",
+        author: "Mariana Mazzucato",
+        year: 2013,
+        link: "https://www.amazon.co.uk/Entrepreneurial-State-Debunking-Private-Sector/dp/1783085076"
+      },
+      { title: "Power and Progress: Our Thousand-Year Struggle Over Technology and Prosperity",
+        author: "Daron Acemoglu & Simon Johnson",
+        year: 2023,
+        link: "https://www.amazon.co.uk/Power-Progress-Thousand-Year-Struggle-Technology/dp/1541702581"
+      },
+      { title: "Shared Prosperity in a Fractured World",
+        author: "World Bank Institutional Report",
+        year: 2025,
+        link: "https://www.amazon.co.uk/s?k=Shared+Prosperity+Fractured+World+World+Bank"
+      },
+      { title: "Pengalaman Pembangunan Indonesia",
+        author: "Widjojo Nitisastro",
+        year: 2010,
+        link: "https://www.amazon.co.uk/s?k=Pengalaman+Pembangunan+Indonesia+Widjojo+Nitisastro"
+      },
+      { title: "Kesan Para Sahabat tentang Widjojo Nitisastro",
+        author: "Compilation",
+        year: 2007,
+        link: "https://www.amazon.co.uk/s?k=Kesan+Para+Sahabat+Widjojo+Nitisastro"
+      },
+      { title: "Berenang di Segara: Kuntoro Mangkusubroto dalam Tuturan Sahabat",
+        author: "Compilation",
+        year: 2024,
+        link: "https://www.amazon.co.uk/s?k=Berenang+di+Segara+Kuntoro+Mangkusubroto"
+      }
+    ]
+  },
+
+  {
+    episode: 42,
+    title: "Becoming Legendary | A Masterclass from Tuti Hadiputranto",
+    date: "2026-05-30",
+    url: "https://www.youtube.com/watch?v=o80aUzcKTxo",
+    guest: "",
+    books: [
+      { title: "White Shoes: How a New Breed of Wall Street Lawyers Changed Big Business and the American Economy",
+        author: "John Oller",
+        year: 2019,
+        link: "https://www.amazon.co.uk/s?k=White+Shoes+Wall+Street+Lawyers+John+Oller"
+      },
+      { title: "Skadden: Power, Money, and the Rise of a Legal Empire",
+        author: "Lincoln Caplan",
+        year: 1993,
+        link: "https://www.amazon.co.uk/Skadden-Power-Money-Legal-Empire/dp/0374524243"
+      },
+      { title: "Turks and Brahmins: Upheaval at Milbank, Tweed: Wall Street's Gentlemen Take Off Their Gloves",
+        author: "Ellen Joan Pollock",
+        year: 1990,
+        link: "https://www.amazon.co.uk/s?k=Turks+Brahmins+Upheaval+Milbank+Ellen+Pollock"
+      },
+      { title: "A Law Unto Itself: The Untold Story of the Law Firm Sullivan & Cromwell",
+        author: "Nancy Lisagor & Frank Lipsius",
+        year: 1988,
+        link: "https://www.amazon.co.uk/s?k=Law+Unto+Itself+Sullivan+Cromwell+Nancy+Lisagor"
+      },
+      { title: "The Anointed: New York's White Shoe Law Firms—How They Started, How They Grew, and How They Ran the Country",
+        author: "Jeremiah Lambert & Geoffrey S. Stewart",
+        year: 2021,
+        link: "https://www.amazon.co.uk/s?k=Anointed+New+York+White+Shoe+Law+Firms"
+      },
+      { title: "Skadden: Power, Money, and the Rise of a Legal Empire",
+        author: "Lincoln Caplan",
+        year: 1993,
+        link: "https://www.amazon.co.uk/Skadden-Power-Money-Legal-Empire/dp/0374524243"
+      }
+    ]
+  },
+
+  {
+    episode: 41,
+    title: "Membongkar Kebobrokan Konoha | with Eno Bening",
+    date: "2026-05-16",
+    url: "https://www.youtube.com/watch?v=3euqFpnZ5Qw",
+    guest: "",
+    books: [
+    ]
+  },
+
+  {
+    episode: 40,
+    title: "Building an Energy Resilient Country | with Rachmat Kaimuddin",
+    date: "2026-05-02",
+    url: "https://www.youtube.com/watch?v=r8zrrn_61iI",
+    guest: "",
+    books: [
+      { title: "Thinking in Systems",
+        author: "Donella H. Meadows",
+        year: 2008,
+        link: "https://www.amazon.co.uk/s?k=Thinking+in+Systems+Donella+H.+Meadows&i=stripbooks"
+      },
+      { title: "Chokepoints",
+        author: "Edward Fishman",
+        year: 2025,
+        link: "https://www.amazon.co.uk/s?k=Chokepoints+Edward+Fishman&i=stripbooks"
+      },
+      { title: "Paradoks Indonesia",
+        author: "Prabowo Subianto",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Paradoks+Indonesia+Prabowo+Subianto"
+      },
+      { title: "More and More and More",
+        author: "Jean-Baptiste Fressoz",
+        year: 2024,
+        link: "https://www.amazon.co.uk/s?k=More+More+Jean-Baptiste+Fressoz"
+      },
+      { title: "No Miracles Needed",
+        author: "Mark Z. Jacobson",
+        year: 2023,
+        link: "https://www.amazon.co.uk/s?k=No+Miracles+Needed+Mark+Jacobson"
+      },
+      { title: "Project Finance, Securitisations and Subordinated Debt",
+        author: "Philip R. Wood",
+        year: 1981,
+        link: "https://www.amazon.co.uk/s?k=Project+Finance+Securitisations+Philip+Wood"
+      },
+      { title: "International Project Finance: Law and Practice",
+        author: "John Dewar",
+        year: 2011,
+        link: "https://www.amazon.co.uk/s?k=International+Project+Finance+Law+Practice+John+Dewar"
+      },
+      { title: "The Law and Business of International Project Finance",
+        author: "Scott L. Hoffman",
+        year: 2007,
+        link: "https://www.amazon.co.uk/s?k=Law+Business+International+Project+Finance+Scott+Hoffman"
+      },
+      { title: "Advanced Introduction to Law and Renewable Energy",
+        author: "",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Advanced+Introduction+Law+Renewable+Energy"
+      },
+      { title: "Sustainable Finance",
+        author: "Muliaman Hadad",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Sustainable+Finance+Muliaman+Hadad"
+      }
+    ]
+  },
+
+  {
+    episode: 39,
+    title: "Conspiracy and Dictatorship | Who Really Runs the World? The Secret Cabal Myth",
+    date: "2026-04-18",
+    url: "https://www.youtube.com/watch?v=lqMedBcDGQ8",
+    guest: "",
+    books: [
+      { title: "The Dictator’s Handbook",
+        author: "Bruce Bueno de Mesquita & Alastair Smith",
+        year: 2011,
+        link: "https://www.amazon.co.uk/s?k=The+Dictator+s+Handbook+Bruce+Bueno+de+Mesquita&i=stripbooks"
+      },
+      { title: "How to Be a Dictator: The Cult of Personality in the Twentieth Century",
+        author: "Frank Dikötter",
+        year: 2019,
+        link: "https://www.amazon.co.uk/s?k=How+to+Be+a+Dictator+The+Frank+Dik%C3%B6tter&i=stripbooks"
+      },
+      { title: "The Dictators",
+        author: "",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Dictators+book"
+      },
+      { title: "The Infernal Library: On Dictators, the Books They Wrote, and Other Catastrophes of Literacy",
+        author: "Daniel Kalder",
+        year: 2018,
+        link: "https://www.amazon.co.uk/s?k=The+Infernal+Library+On+Dictators+the+Daniel+Kalder&i=stripbooks"
+      },
+      { title: "How to Feed a Dictator",
+        author: "Witold Szablowski",
+        year: 2020,
+        link: "https://www.amazon.co.uk/s?k=How+to+Feed+a+Dictator+Witold+Szablowski&i=stripbooks"
+      },
+      { title: "Hidden Games: The Surprising Game Theory of How We Hope, Love, and Care",
+        author: "Moshe Hoffman & Erez Yoeli",
+        year: 2022,
+        link: "https://www.amazon.co.uk/s?k=Hidden+Games+The+Surprising+Game+Theory+Moshe+Hoffman&i=stripbooks"
+      },
+      { title: "Arms and Influence",
+        author: "Thomas C. Schelling",
+        year: 1966,
+        link: "https://www.amazon.co.uk/s?k=Arms+and+Influence+Thomas+C.+Schelling&i=stripbooks"
+      },
+      { title: "The End of the World Is Just the Beginning",
+        author: "Peter Zeihan",
+        year: 2022,
+        link: "https://www.amazon.co.uk/s?k=The+End+of+the+World+Is+Peter+Zeihan&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 38,
+    title: "Conspiracy or Power Play | Are We Run by Secret Organization?",
+    date: "2026-04-04",
+    url: "https://www.youtube.com/watch?v=ez4EitV9TvU",
+    guest: "",
+    books: [
+      { title: "Conspiracy Theories and Other Dangerous Ideas",
+        author: "Cass R. Sunstein",
+        year: 2014,
+        link: "https://www.amazon.co.uk/s?k=Conspiracy+Theories+and+Other+Dangerous+Ideas+Cass+R.+Sunstein&i=stripbooks"
+      },
+      { title: "The Chaos Machine",
+        author: "Max Fisher",
+        year: 2022,
+        link: "https://www.amazon.co.uk/s?k=The+Chaos+Machine+Max+Fisher&i=stripbooks"
+      },
+      { title: "The Death of Expertise",
+        author: "Tom Nichols",
+        year: 2017,
+        link: "https://www.amazon.co.uk/s?k=The+Death+of+Expertise+Tom+Nichols&i=stripbooks"
+      },
+      { title: "The Power Elite",
+        author: "C. Wright Mills",
+        year: 1956,
+        link: "https://www.amazon.co.uk/s?k=The+Power+Elite+C.+Wright+Mills&i=stripbooks"
+      },
+      { title: "Power, Pleasure, and Profit",
+        author: "David Wootton",
+        year: 2018,
+        link: "https://www.amazon.co.uk/s?k=Power+Pleasure+and+Profit+David+Wootton&i=stripbooks"
+      },
+      { title: "Very Important People",
+        author: "Ashley Mears",
+        year: 2020,
+        link: "https://www.amazon.co.uk/s?k=Very+Important+People+Ashley+Mears&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 37,
+    title: "The Tragedy of Iblis: Hatred or Devotion? | Devil's Advocate | Eid Mubarak 1447H Special",
+    date: "2026-03-21",
+    url: "https://www.youtube.com/watch?v=apklQflp3Hs",
+    guest: "",
+    books: [
+      { title: "The Devil (Series): The Devil, Satan: The Early Christian Tradition, Lucifer: The Devil in Middle Ages, Mephistopheles: The Devil in Modern World, The Prince of Darkness",
+        author: "Jeffrey Burton Russell",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=The+Devil+Series+The+Devil+Satan+Jeffrey+Burton+Russell&i=stripbooks"
+      },
+      { title: "Tragedi Setan (Satan's Tragedy)",
+        author: "Peter J. Awn",
+        year: 1983,
+        link: "https://www.amazon.co.uk/s?k=Tragedi+Setan+Satan+s+Tragedy+Peter+J.+Awn&i=stripbooks"
+      },
+      { title: "Satan’s Tragedy and Redemption",
+        author: "Annemarie Schimmel",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Satan+s+Tragedy+and+Redemption+Annemarie+Schimmel&i=stripbooks"
+      },
+      { title: "Evil Men",
+        author: "James Dawes",
+        year: 2013,
+        link: "https://www.amazon.co.uk/s?k=Evil+Men+James+Dawes&i=stripbooks"
+      },
+      { title: "Kesombongan Iblis",
+        author: "Ibnu Qayyim Al-Jauziyah",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Kesombongan+Iblis+Ibnu+Qayyim"
+      },
+      { title: "Karung Mutiara Al-Ghazali",
+        author: "K.H.A. Mustofa Bisri",
+        year: 1997,
+        link: "https://www.amazon.co.uk/s?k=Karung+Mutiara+Al-Ghazali+Mustofa+Bisri"
+      }
+    ]
+  },
+
+  {
+    episode: 36,
+    title: "Law and Psychology | The Nature of Loneliness | Looking at Legal Cases with Empathy",
+    date: "2026-03-14",
+    url: "https://www.youtube.com/watch?v=1b0Sdj7fpBQ",
+    guest: "",
+    books: [
+      { title: "Four Seasons of Loneliness: A Lawyer's Casebook",
+        author: "J.W. Freiberg",
+        year: 2016,
+        link: "https://www.amazon.co.uk/s?k=Four+Seasons+of+Loneliness+A+Lawyer+J.W.+Freiberg&i=stripbooks"
+      },
+      { title: "Critical Sociology from a European Perspective",
+        author: "J.W. Freiberg",
+        year: 1979,
+        link: "https://www.amazon.co.uk/s?k=Critical+Sociology+from+a+European+Perspective+J.W.+Freiberg&i=stripbooks"
+      },
+      { title: "Surrounded by Others and yet So Alone",
+        author: "J.W. Freiberg",
+        year: 2021,
+        link: "https://www.amazon.co.uk/s?k=Surrounded+Others+Alone+J.W.+Freiberg"
+      },
+      { title: "Growing Up Lonely",
+        author: "J.W. Freiberg",
+        year: 2023,
+        link: "https://www.amazon.co.uk/s?k=Growing+Up+Lonely+J.W.+Freiberg"
+      }
+    ]
+  },
+
+  {
+    episode: 35,
+    title: "Developing Taste through Manga | with Eno Bening",
+    date: "2026-02-28",
+    url: "https://www.youtube.com/watch?v=nIa57ezhAG0",
+    guest: "",
+    books: [
+      { title: "Cooking Master Boy (Chūka Ichiban!)",
+        author: "Etsushi Ogawa",
+        year: 1995,
+        link: "https://www.amazon.co.uk/s?k=Cooking+Master+Boy+Ch%C5%ABka+Ichiban+Etsushi+Ogawa&i=stripbooks"
+      },
+      { title: "Sushi Chef Tsukasa (Mitsuboshi no Sushi)",
+        author: "Mitsuru Sugaya",
+        year: 1994,
+        link: "https://www.amazon.co.uk/s?k=Sushi+Chef+Tsukasa+Mitsuboshi+no+Sushi+Mitsuru+Sugaya&i=stripbooks"
+      },
+      { title: "Hell’s Kitchen",
+        author: "Mitsuru Nishimura & Gumi Amashi",
+        year: 2008,
+        link: "https://www.amazon.co.uk/s?k=Hell+s+Kitchen+Mitsuru+Nishimura&i=stripbooks"
+      },
+      { title: "Yakitate!! Japan",
+        author: "Takashi Hashiguchi",
+        year: 2002,
+        link: "https://www.amazon.co.uk/s?k=Yakitate+Japan+Takashi+Hashiguchi&i=stripbooks"
+      },
+      { title: "Bambino!",
+        author: "Tetsuji Sekiya",
+        year: 2005,
+        link: "https://www.amazon.co.uk/s?k=Bambino+Tetsuji+Sekiya&i=stripbooks"
+      },
+      { title: "Toriko",
+        author: "Mitsutoshi Shimabukuro",
+        year: 2008,
+        link: "https://www.amazon.co.uk/s?k=Toriko+Mitsutoshi+Shimabukuro&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 34,
+    title: "A Peek to The Wuxia Literature | Honor, Power, and The Martial World",
+    date: "2026-02-17",
+    url: "https://www.youtube.com/watch?v=WSrRIzKo2q8",
+    guest: "",
+    books: [
+      { title: "Tapak Sakti",
+        author: "Tony Wong (based on Gu Long's Juedai Shuangjiao)",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Tapak+Sakti+Tony+Wong"
+      },
+      { title: "Pukulan Gledek",
+        author: "Tony Wong",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Pukulan+Gledek+Tony+Wong"
+      },
+      { title: "Pedang Maha Dewa",
+        author: "Tony Wong",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Pedang+Maha+Dewa+Tony+Wong"
+      },
+      { title: "Long Hu Men",
+        author: "Tony Wong",
+        year: 1970,
+        link: "https://www.amazon.co.uk/s?k=Long+Hu+Men+Tony+Wong"
+      },
+      { title: "Tiger Heroes",
+        author: "Tony Wong",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Tiger+Heroes+Tony+Wong"
+      },
+      { title: "Tiger Wong",
+        author: "Tony Wong",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Tiger+Wong+Tony+Wong"
+      },
+      { title: "Legend of the Condor Heroes",
+        author: "Jin Yong",
+        year: 1957,
+        link: "https://www.amazon.co.uk/s?k=Legend+Condor+Heroes+Jin+Yong"
+      }
+    ]
+  },
+
+  {
+    episode: 33,
+    title: "Communicating for the Public | with Dirgayuza Setiawan",
+    date: "2026-02-07",
+    url: "https://www.youtube.com/watch?v=qoucjz3Qb_s",
+    guest: "",
+    books: [
+    ]
+  },
+
+  {
+    episode: 32,
+    title: "Weeaboo Maxxing | with Abigail Limuria and Eno Bening",
+    date: "2026-01-24",
+    url: "https://www.youtube.com/watch?v=MxUv9-pOYHA",
+    guest: "",
+    books: [
+    ]
+  },
+
+  {
+    episode: 31,
+    title: "You Think You Think | with Abigail Limuria (What is Up, Indonesia? | Malaka Books)",
+    date: "2026-01-10",
+    url: "https://www.youtube.com/watch?v=VJWAQbMrMK8",
+    guest: "",
+    books: [
+      { title: "Makanya, Mikir!",
+        author: "Abigail Limuria & Cania Citta",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Makanya+Mikir+Abigail+Limuria"
+      },
+      { title: "(purchase here: https://s.shopee.co.id/9pXwjYTSPb)",
+        author: "",
+        year: null,
+        link: "https://s.shopee.co.id/9pXwjYTSPb"
+      },
+      { title: "Maxims for Thinking Analytically",
+        author: "Richard Zeckhauser (foreword by Daniel Kahneman)",
+        year: 2021,
+        link: "https://www.amazon.co.uk/s?k=Maxims+Thinking+Analytically+Zeckhauser+Kahneman"
+      },
+      { title: "Intuition Pumps and Other Tools for Thinking",
+        author: "Daniel Dennett",
+        year: 2013,
+        link: "https://www.amazon.co.uk/Intuition-Pumps-Other-Tools-Thinking/dp/0241954621"
+      },
+      { title: "Four Ways of Thinking",
+        author: "David Sumpter",
+        year: 2023,
+        link: "https://www.amazon.co.uk/s?k=Four+Ways+Thinking+David+Sumpter"
+      },
+      { title: "The Six Disciplines of Strategic Thinking",
+        author: "Michael D. Watkins",
+        year: 2024,
+        link: "https://www.amazon.co.uk/s?k=Six+Disciplines+Strategic+Thinking+Michael+Watkins"
+      }
+    ]
+  },
+
+  {
+    episode: 30,
+    title: "Persistence and True Identity through JRPGs | When Life Imitates Games",
+    date: "2025-12-27",
+    url: "https://www.youtube.com/watch?v=OrbrsyLXUYQ",
+    guest: "",
+    books: [
+    ]
+  },
+
+  {
+    episode: 29,
+    title: "Save Points, Soul Searching, and Leveling Up | Life Through JRPGs | with Eza Hazami",
+    date: "2025-12-13",
+    url: "https://www.youtube.com/watch?v=juiJalRlZJ0",
+    guest: "",
+    books: [
+    ]
+  },
+
+  {
+    episode: 28,
+    title: "Exploring Local Legends: From Bharatayuda to Kyokarta | Future of Stories | with Faza Meonk",
+    date: "2025-11-29",
+    url: "https://www.youtube.com/watch?v=qMOlNeEGGkc",
+    guest: "",
+    books: [
+      { title: "Si Juki x BlackJack",
+        author: "Faza Meonk",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Si+Juki+x+BlackJack+Faza+Meonk&i=stripbooks"
+      },
+      { title: "Kung Fu Komang",
+        author: "",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Kung+Fu+Komang&i=stripbooks"
+      },
+      { title: "Pandawa Seda",
+        author: "R.A. Kosasih",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Pandawa+Seda+R.A.+Kosasih&i=stripbooks"
+      },
+      { title: "Bharatayudha",
+        author: "R.A. Kosasih",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Bharatayudha+R.A.+Kosasih&i=stripbooks"
+      },
+      { title: "Malin Kundang",
+        author: "Aris Ardianto & Misurind",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Malin+Kundang+Aris+Ardianto&i=stripbooks"
+      },
+      { title: "Paksi Jaladara",
+        author: "Asep Sunandar Sunarya & Harry Mintareja",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Paksi+Jaladara+Asep+Sunandar+Sunarya&i=stripbooks"
+      },
+      { title: "Sang Naga Sasra, Pendekar Pilihan Dewa, Perebutan Mustika Amaranjali",
+        author: "Teguh Santosa",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Sang+Naga+Sasra+Pendekar+Pilihan+Dewa+Teguh+Santosa&i=stripbooks"
+      },
+      { title: "Tira Dalam Pasungan",
+        author: "",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Tira+Dalam+Pasungan&i=stripbooks"
+      },
+      { title: "Who Owns This Sentence? A History of Copyrights and Wrongs",
+        author: "",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Who+Owns+This+Sentence+A+History&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 27,
+    title: "How An Economist Sees the World | with Masyita Crystallin",
+    date: "2025-11-15",
+    url: "https://www.youtube.com/watch?v=8fnseRh8FOc",
+    guest: "",
+    books: [
+      { title: "Mengejar Fajar",
+        author: "Metta Dharmasaputra",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Mengejar+Fajar+Metta+Dharmasaputra&i=stripbooks"
+      },
+      { title: "When The President Calls",
+        author: "Simon & Schuster",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=When+The+President+Calls+Simon&i=stripbooks"
+      },
+      { title: "Will Singapore Exist in 100 Years?",
+        author: "Seng Han Thong",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Will+Singapore+Exist+in+100+Years+Seng+Han+Thong&i=stripbooks"
+      },
+      { title: "Gambling On Development: Why Some Countries Win and Others Lose",
+        author: "Stefan Dercon",
+        year: 2022,
+        link: "https://www.amazon.co.uk/s?k=Gambling+On+Development+Why+Some+Countries+Stefan+Dercon&i=stripbooks"
+      },
+      { title: "Leadership: Six Studies in World Strategy",
+        author: "Henry Kissinger",
+        year: 2022,
+        link: "https://www.amazon.co.uk/s?k=Leadership+Six+Studies+in+World+Strategy+Henry+Kissinger&i=stripbooks"
+      },
+      { title: "The Feminine Mistake",
+        author: "Leslie Bennetts",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=The+Feminine+Mistake+Leslie+Bennetts&i=stripbooks"
+      },
+      { title: "Nice Girls Don’t Get Rich",
+        author: "Lois P. Frankel",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Nice+Girls+Don+t+Get+Rich+Lois+P.+Frankel&i=stripbooks"
+      },
+      { title: "Price Theory",
+        author: "Milton Friedman",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Price+Theory+Milton+Friedman&i=stripbooks"
+      },
+      { title: "Economic Theory",
+        author: "Gary Becker",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Economic+Theory+Gary+Becker&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 26,
+    title: "Halloween Episode: The Special Kind of Horror",
+    date: "2025-10-31",
+    url: "https://www.youtube.com/watch?v=_7AyrDpYFUo",
+    guest: "",
+    books: [
+      { title: "No Longer Human",
+        author: "Osamu Dazai",
+        year: 1948,
+        link: "https://www.amazon.co.uk/s?k=No+Longer+Human+Osamu+Dazai&i=stripbooks"
+      },
+      { title: "Misteri Hantu Terbesar di Dunia",
+        author: "",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Misteri+Hantu+Terbesar+di+Dunia&i=stripbooks"
+      },
+      { title: "My Death",
+        author: "Lisa Tuttle",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=My+Death+Lisa+Tuttle&i=stripbooks"
+      },
+      { title: "A Short Stay in Hell",
+        author: "Steven L. Peck",
+        year: 2012,
+        link: "https://www.amazon.co.uk/s?k=A+Short+Stay+in+Hell+Steven+L.+Peck&i=stripbooks"
+      },
+      { title: "Lisey’s Story",
+        author: "Stephen King",
+        year: 2006,
+        link: "https://www.amazon.co.uk/s?k=Lisey+s+Story+Stephen+King&i=stripbooks"
+      },
+      { title: "Roald Dahl’s Book of Ghost Stories",
+        author: "",
+        year: 1983,
+        link: "https://www.amazon.co.uk/s?k=Roald+Dahl+s+Book+of+Ghost&i=stripbooks"
+      },
+      { title: "Nube Series",
+        author: "",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Nube+Series&i=stripbooks"
+      },
+      { title: "Ushio and Tora",
+        author: "",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Ushio+and+Tora&i=stripbooks"
+      },
+      { title: "Vampire Hunter D",
+        author: "",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Vampire+Hunter+D&i=stripbooks"
+      },
+      { title: "Black Paradox",
+        author: "Junji Ito",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Black+Paradox+Junji+Ito&i=stripbooks"
+      },
+      { title: "Jigoku Planet Remina",
+        author: "Junji Ito",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Jigoku+Planet+Remina+Junji+Ito&i=stripbooks"
+      },
+      { title: "Shiver",
+        author: "Junji Ito",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Shiver+Junji+Ito&i=stripbooks"
+      },
+      { title: "Gerbang Malam",
+        author: "",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Gerbang+Malam&i=stripbooks"
+      },
+      { title: "100 Ghost Stories to Die For",
+        author: "",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=100+Ghost+Stories+to+Die+For&i=stripbooks"
+      },
+      { title: "Scary Lessons Reincarnation",
+        author: "Emi Ishikawa",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Scary+Lessons+Reincarnation+Emi+Ishikawa&i=stripbooks"
+      },
+      { title: "Koleksi Chie Watari",
+        author: "",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Koleksi+Chie+Watari&i=stripbooks"
+      },
+      { title: "Tales from the Darkside",
+        author: "Yoko Matsumoto",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Tales+from+the+Darkside+Yoko+Matsumoto&i=stripbooks"
+      },
+      { title: "Pengantin Demos",
+        author: "",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Pengantin+Demos&i=stripbooks"
+      },
+      { title: "Book of Horror",
+        author: "Takaminato Motosuke",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Book+of+Horror+Takaminato+Motosuke&i=stripbooks"
+      },
+      { title: "Hantu Yoko",
+        author: "Komik Fantasteen",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Hantu+Yoko+Komik+Fantasteen&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 25,
+    title: "Rethinking Our Systems | Not Imported, But Locally Nurtured | with Bagus Muljadi",
+    date: "2025-10-18",
+    url: "https://www.youtube.com/watch?v=6v0ZW4TlIb0",
+    guest: "",
+    books: [
+      { title: "Islamic Legal Methodology",
+        author: "",
+        year: 2003,
+        link: "https://www.amazon.co.uk/s?k=Islamic+Legal+Methodology&i=stripbooks"
+      },
+      { title: "A History of Islamic Legal Theories",
+        author: "Wael Hallaq",
+        year: 1997,
+        link: "https://www.amazon.co.uk/s?k=A+History+of+Islamic+Legal+Theories+Wael+Hallaq&i=stripbooks"
+      },
+      { title: "A Theory of Legal Argumentation",
+        author: "Robert Alexy",
+        year: 1978,
+        link: "https://www.amazon.co.uk/s?k=A+Theory+of+Legal+Argumentation+Robert+Alexy&i=stripbooks"
+      },
+      { title: "Proklamasi dan Konstitusi",
+        author: "Muhammad Yamin",
+        year: 1951,
+        link: "https://www.amazon.co.uk/s?k=Proklamasi+dan+Konstitusi+Muhammad+Yamin&i=stripbooks"
+      },
+      { title: "The Debate of The Constitution – Bernard Bailyn (ed.)",
+        author: "",
+        year: 1993,
+        link: "https://www.amazon.co.uk/s?k=The+Debate+of+The+Constitution+Bernard&i=stripbooks"
+      },
+      { title: "The Problems of Jurisprudence",
+        author: "Richard A. Posner",
+        year: 1990,
+        link: "https://www.amazon.co.uk/s?k=The+Problems+of+Jurisprudence+Richard+A.+Posner&i=stripbooks"
+      },
+      { title: "Public Choice: Concepts and Applications in Law",
+        author: "Maxwell L. Stearns",
+        year: 1997,
+        link: "https://www.amazon.co.uk/s?k=Public+Choice+Concepts+and+Applications+in+Maxwell+L.+Stearns&i=stripbooks"
+      },
+      { title: "The Problematics of Moral and Legal Theory",
+        author: "Richard A. Posner",
+        year: 1999,
+        link: "https://www.amazon.co.uk/s?k=The+Problematics+of+Moral+and+Legal+Richard+A.+Posner&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 24,
+    title: "Building a System That Works for Us | with Bagus Muljadi",
+    date: "2025-10-04",
+    url: "https://www.youtube.com/watch?v=zszgOzPDWp4",
+    guest: "",
+    books: [
+      { title: "Menuju Negara Hukum",
+        author: "Moh. Hatta",
+        year: 1953,
+        link: "https://www.amazon.co.uk/s?k=Menuju+Negara+Hukum+Moh.+Hatta&i=stripbooks"
+      },
+      { title: "General Theory of Law and State",
+        author: "Hans Kelsen",
+        year: 1945,
+        link: "https://www.amazon.co.uk/s?k=General+Theory+of+Law+and+State+Hans+Kelsen&i=stripbooks"
+      },
+      { title: "Natural Law and Natural Rights",
+        author: "John Finnis",
+        year: 1980,
+        link: "https://www.amazon.co.uk/s?k=Natural+Law+and+Natural+Rights+John+Finnis&i=stripbooks"
+      },
+      { title: "The Concept of Law",
+        author: "H.L.A. Hart",
+        year: 1961,
+        link: "https://www.amazon.co.uk/s?k=The+Concept+of+Law+H.L.A.+Hart&i=stripbooks"
+      },
+      { title: "Realistic Theory of Law",
+        author: "Brian Z. Tamanaha",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Realistic+Theory+of+Law+Brian+Z.+Tamanaha&i=stripbooks"
+      },
+      { title: "Fundamental Principles of the Sociology of Law",
+        author: "Eugen Ehrlich",
+        year: 1936,
+        link: "https://www.amazon.co.uk/s?k=Fundamental+Principles+of+the+Sociology+of+Eugen+Ehrlich&i=stripbooks"
+      },
+      { title: "Legality and Legitimacy",
+        author: "David Dyzenhaus",
+        year: 2006,
+        link: "https://www.amazon.co.uk/s?k=Legality+and+Legitimacy+David+Dyzenhaus&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 23,
+    title: "Eren vs. Zeke: Which Side Are You On? | with Eno Bening",
+    date: "2025-09-13",
+    url: "https://www.youtube.com/watch?v=WNPEGuRC7ak",
+    guest: "",
+    books: [
+      { title: "Attack on Titan (Shingeki no Kyojin)",
+        author: "Hajime Isayama",
+        year: 2009,
+        link: "https://www.amazon.co.uk/s?k=Attack+on+Titan+Shingeki+no+Kyojin+Hajime+Isayama&i=stripbooks"
+      },
+      { title: "Cardcaptor Sakura",
+        author: "CLAMP",
+        year: 1996,
+        link: "https://www.amazon.co.uk/s?k=Cardcaptor+Sakura+CLAMP&i=stripbooks"
+      },
+      { title: "The Promised Neverland",
+        author: "Kaiu Shirai & Posuka Demizu",
+        year: 2016,
+        link: "https://www.amazon.co.uk/s?k=The+Promised+Neverland+Kaiu+Shirai&i=stripbooks"
+      },
+      { title: "Toriko",
+        author: "Mitsutoshi Shimabukuro",
+        year: 2008,
+        link: "https://www.amazon.co.uk/s?k=Toriko+Mitsutoshi+Shimabukuro&i=stripbooks"
+      },
+      { title: "Record of Ragnarok (Shūmatsu no Valkyrie)",
+        author: "Shinya Umemura, Takumi Fukui & Ajichika",
+        year: 2017,
+        link: "https://www.amazon.co.uk/s?k=Record+of+Ragnarok+Sh%C5%ABmatsu+no+Valkyrie+Shinya+Umemura&i=stripbooks"
+      },
+      { title: "Pengantin Demos",
+        author: "Yuuho Ashibe",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Pengantin+Demos+Yuuho+Ashibe&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 22,
+    title: "We Are Wibu Nakama, Sasageyo! | with Eno Bening",
+    date: "2025-08-14",
+    url: "https://www.youtube.com/watch?v=e2_1IEcO1eo",
+    guest: "",
+    books: [
+      { title: "Bagaimana Media Sosial Menghancurkanmu",
+        author: "Eno Bening",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Bagaimana+Media+Sosial+Menghancurkanmu+Eno+Bening&i=stripbooks"
+      },
+      { title: "World Without Sleep",
+        author: "Yamada Futaba",
+        year: 2013,
+        link: "https://www.amazon.co.uk/s?k=World+Without+Sleep+Yamada+Futaba&i=stripbooks"
+      },
+      { title: "Family Compo",
+        author: "Tsukasa Hojo",
+        year: 1996,
+        link: "https://www.amazon.co.uk/s?k=Family+Compo+Tsukasa+Hojo&i=stripbooks"
+      },
+      { title: "Nanatsu no Taizai",
+        author: "Nakaba Suzuki",
+        year: 2012,
+        link: "https://www.amazon.co.uk/s?k=Nanatsu+no+Taizai+Nakaba+Suzuki&i=stripbooks"
+      },
+      { title: "One Piece",
+        author: "Eiichiro Oda",
+        year: 1997,
+        link: "https://www.amazon.co.uk/s?k=One+Piece+Eiichiro+Oda&i=stripbooks"
+      },
+      { title: "Oishinbo",
+        author: "Tetsu Kariya & Akira Hanasaki",
+        year: 1983,
+        link: "https://www.amazon.co.uk/s?k=Oishinbo+Tetsu+Kariya&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 21,
+    title: "Shaping Reality with Literature | with Hilmar Farid",
+    date: "2025-07-30",
+    url: "https://www.youtube.com/watch?v=ZKS8aON8zC4",
+    guest: "",
+    books: [
+      { title: "Wonder Confronts Certainty",
+        author: "James P. Carse",
+        year: 2020,
+        link: "https://www.amazon.co.uk/s?k=Wonder+Confronts+Certainty+James+P.+Carse&i=stripbooks"
+      },
+      { title: "Heracles’ Bow: Essays on the Rhetoric and Poetics of the Law",
+        author: "James Boyd White",
+        year: 1985,
+        link: "https://www.amazon.co.uk/s?k=Heracles+Bow+Essays+on+the+Rhetoric+James+Boyd+White&i=stripbooks"
+      },
+      { title: "Diksi dan Gaya Bahasa",
+        author: "Gorys Keraf",
+        year: 1984,
+        link: "https://www.amazon.co.uk/s?k=Diksi+dan+Gaya+Bahasa+Gorys+Keraf&i=stripbooks"
+      },
+      { title: "9 dari 10 Kata Bahasa Indonesia adalah Asing",
+        author: "Ivan Lanin",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=9+dari+10+Kata+Bahasa+Indonesia+Ivan+Lanin&i=stripbooks"
+      },
+      { title: "Farnsworth’s Classical English Style",
+        author: "Ward Farnsworth",
+        year: 2020,
+        link: "https://www.amazon.co.uk/s?k=Farnsworth+s+Classical+English+Style+Ward+Farnsworth&i=stripbooks"
+      },
+      { title: "Farnsworth’s Classical English Rhetoric",
+        author: "Ward Farnsworth",
+        year: 2010,
+        link: "https://www.amazon.co.uk/s?k=Farnsworth+s+Classical+English+Rhetoric+Ward+Farnsworth&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 20,
+    title: "Global Powers, Hidden Forces, & the Question of World War with Shofwan Al Banna Choiruzzad",
+    date: "2025-07-19",
+    url: "https://www.youtube.com/watch?v=5UWRmnV7kyQ",
+    guest: "",
+    books: [
+      { title: "Revolusi",
+        author: "David Van Reybrouck",
+        year: 2022,
+        link: "https://www.amazon.co.uk/s?k=Revolusi+David+Van+Reybrouck&i=stripbooks"
+      },
+      { title: "Chokepoints: Global Private Regulation on the Internet",
+        author: "Milton Mueller",
+        year: 2025,
+        link: "https://www.amazon.co.uk/s?k=Chokepoints+Global+Private+Regulation+on+the+Milton+Mueller&i=stripbooks"
+      },
+      { title: "Against the World: Anti-Globalism and Mass Politics Between the World Wars",
+        author: "Tara Zahra",
+        year: 2023,
+        link: "https://www.amazon.co.uk/s?k=Against+the+World+Anti+Globalism+and+Tara+Zahra&i=stripbooks"
+      },
+      { title: "The Return of the Strong Gods: Nationalism, Populism, and the Future of the West",
+        author: "R.R. Reno",
+        year: 2019,
+        link: "https://www.amazon.co.uk/s?k=The+Return+of+the+Strong+Gods+R.R.+Reno&i=stripbooks"
+      },
+      { title: "The Dictator’s Handbook: Why Bad Behavior is Almost Always Good Politics – Bruce Bueno de Mesquita & Alastair Smith",
+        author: "",
+        year: 2011,
+        link: "https://www.amazon.co.uk/s?k=The+Dictator+s+Handbook+Why+Bad&i=stripbooks"
+      },
+      { title: "War, Religion and Empire: The Transformation of International Orders",
+        author: "Andrew Phillips & J.C. Sharman",
+        year: 2011,
+        link: "https://www.amazon.co.uk/s?k=War+Religion+and+Empire+The+Transformation+Andrew+Phillips&i=stripbooks"
+      },
+      { title: "The Grand Chessboard: American Primacy and Its Geostrategic Imperatives",
+        author: "Zbigniew Brzezinski",
+        year: 1997,
+        link: "https://www.amazon.co.uk/s?k=The+Grand+Chessboard+American+Primacy+and+Zbigniew+Brzezinski&i=stripbooks"
+      },
+      { title: "Lords of the Desert: Britain’s Struggle with America to Dominate the Middle East",
+        author: "James Barr",
+        year: 2018,
+        link: "https://www.amazon.co.uk/s?k=Lords+of+the+Desert+Britain+s+James+Barr&i=stripbooks"
+      },
+      { title: "The Neomercantilist: Global Capitalism and the Geopolitics of Trade",
+        author: "Eric Helleiner",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=The+Neomercantilist+Global+Capitalism+and+the+Eric+Helleiner&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 19,
+    title: "Deeper into the Justice System | Courtrooms, Incentives, and the Philosophy of Law",
+    date: "2025-07-05",
+    url: "https://www.youtube.com/watch?v=bDcRs6MemCE",
+    guest: "",
+    books: [
+    ]
+  },
+
+  {
+    episode: 18,
+    title: "Criminal Justice in Indonesia and the Economy Perspective | KUHAP",
+    date: "2025-06-21",
+    url: "https://www.youtube.com/watch?v=0CNyn_up99M",
+    guest: "",
+    books: [
+      { title: "The Invention of Good and Evil",
+        author: "Peter T. Leeson",
+        year: 2025,
+        link: "https://www.amazon.co.uk/s?k=The+Invention+of+Good+and+Evil+Peter+T.+Leeson&i=stripbooks"
+      },
+      { title: "The Republic of Beliefs",
+        author: "Kaushik Basu",
+        year: 2018,
+        link: "https://www.amazon.co.uk/s?k=The+Republic+of+Beliefs+Kaushik+Basu&i=stripbooks"
+      },
+      { title: "The Costs of Crime and Justice",
+        author: "Mark A. Cohen",
+        year: 2005,
+        link: "https://www.amazon.co.uk/s?k=The+Costs+of+Crime+and+Justice+Mark+A.+Cohen&i=stripbooks"
+      },
+      { title: "Konsolidasi Naskah UUD 1945",
+        author: "Tim Penyusun Sekretariat Negara RI",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Konsolidasi+Naskah+UUD+1945+Tim+Penyusun+Sekretariat+Negara+RI&i=stripbooks"
+      },
+      { title: "Constitutional Law",
+        author: "Erwin Chemerinsky",
+        year: 2019,
+        link: "https://www.amazon.co.uk/s?k=Constitutional+Law+Erwin+Chemerinsky&i=stripbooks"
+      },
+      { title: "Allow Me to Retort: A Black Guy’s Guide to the Constitution",
+        author: "Elie Mystal",
+        year: 2022,
+        link: "https://www.amazon.co.uk/s?k=Allow+Me+to+Retort+A+Black+Elie+Mystal&i=stripbooks"
+      },
+      { title: "Hukum dan Politik di Indonesia",
+        author: "Daniel S. Lev",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Hukum+dan+Politik+di+Indonesia+Daniel+S.+Lev&i=stripbooks"
+      },
+      { title: "Prapenuntutan dan Perkembangannya di Indonesia",
+        author: "Choky Risda Ramadhan",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Prapenuntutan+dan+Perkembangannya+di+Indonesia+Choky+Risda+Ramadhan&i=stripbooks"
+      },
+      { title: "Criminal Justice: An Introduction to the Criminal Justice System in England and Wales",
+        author: "Malcolm Davies, Hazel Croall, and Jane Tyrer",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Criminal+Justice+An+Introduction+to+the+Malcolm+Davies&i=stripbooks"
+      },
+      { title: "The Oxford Handbook of Law and Economics edited",
+        author: "Francesco Parisi",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=The+Oxford+Handbook+of+Law+and+Francesco+Parisi&i=stripbooks"
+      },
+      { title: "Philosophical Foundations of Criminal Law edited",
+        author: "R.A. Duff and Stuart Green",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Philosophical+Foundations+of+Criminal+Law+edited+R.A.+Duff&i=stripbooks"
+      },
+      { title: "The Known Citizen: A History of Privacy in Modern America",
+        author: "Sarah E. Igo",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=The+Known+Citizen+A+History+of+Sarah+E.+Igo&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 17,
+    title: "Tales of the Gods | Mythology and the Power of Storytelling",
+    date: "2025-06-07",
+    url: "https://www.youtube.com/watch?v=TtkrqJq8CMk",
+    guest: "",
+    books: [
+      { title: "The Denial of Death",
+        author: "Ernest Becker",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=The+Denial+of+Death+Ernest+Becker&i=stripbooks"
+      },
+      { title: "Mitologi Yunani",
+        author: "Edith Hamilton",
+        year: 2017,
+        link: "https://www.amazon.co.uk/s?k=Mitologi+Yunani+Edith+Hamilton&i=stripbooks"
+      },
+      { title: "Kalevala — the Finnish national epic compiled",
+        author: "Elias Lönnrot",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Kalevala+the+Finnish+national+epic+compiled+Elias+L%C3%B6nnrot&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 16,
+    title: "Mathematical Mind | Structuring, Quantifying, and Measuring Reality",
+    date: "2025-05-24",
+    url: "https://www.youtube.com/watch?v=j-Vz8OY7CKM",
+    guest: "",
+    books: [
+    ]
+  },
+
+  {
+    episode: 15,
+    title: "Moral Psychology | Rethinking Moral Values and Why We Judge",
+    date: "2025-05-10",
+    url: "https://www.youtube.com/watch?v=Ad8IjF0cpbE",
+    guest: "",
+    books: [
+    ]
+  },
+
+  {
+    episode: 14,
+    title: "Science in Everyday Life | Understanding Reality Through Science, Experimentation, and Doubt",
+    date: "2025-04-26",
+    url: "https://www.youtube.com/watch?v=dni_jm__eSg",
+    guest: "",
+    books: [
+      { title: "The Science of Can and Can’t",
+        author: "Chiara Marletto",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=The+Science+of+Can+and+Can+Chiara+Marletto&i=stripbooks"
+      },
+      { title: "The Primacy of Doubt",
+        author: "Tim Palmer",
+        year: 2022,
+        link: "https://www.amazon.co.uk/s?k=The+Primacy+of+Doubt+Tim+Palmer&i=stripbooks"
+      },
+      { title: "Before the Big Bang",
+        author: "Laura-Mersini Houghton",
+        year: 2022,
+        link: "https://www.amazon.co.uk/s?k=Before+the+Big+Bang+Laura-Mersini+Houghton&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 13,
+    title: "The Leadership Blueprint | Learning from World's Greatest Leaders | Perseverance & Passion",
+    date: "2025-04-12",
+    url: "https://www.youtube.com/watch?v=6ATB5PmYZk0",
+    guest: "",
+    books: [
+      { title: "Leadership: Six Studies in World Strategy",
+        author: "Henry Kissinger",
+        year: 2022,
+        link: "https://www.amazon.co.uk/s?k=Leadership+Six+Studies+in+World+Strategy+Henry+Kissinger&i=stripbooks"
+      },
+      { title: "Deng Xiao Ping and the Transformation of China",
+        author: "Ezra F. Vogel",
+        year: 2011,
+        link: "https://www.amazon.co.uk/s?k=Deng+Xiao+Ping+and+the+Transformation+Ezra+F.+Vogel&i=stripbooks"
+      },
+      { title: "What It Takes",
+        author: "Stephen A. Schwarzman",
+        year: 2019,
+        link: "https://www.amazon.co.uk/s?k=What+It+Takes+Stephen+A.+Schwarzman&i=stripbooks"
+      },
+      { title: "Play Nice But Win",
+        author: "Michael Dell",
+        year: 2021,
+        link: "https://www.amazon.co.uk/s?k=Play+Nice+But+Win+Michael+Dell&i=stripbooks"
+      },
+      { title: "Battle Hymn of The Tiger Mother",
+        author: "Amy Chua",
+        year: 2011,
+        link: "https://www.amazon.co.uk/s?k=Battle+Hymn+of+The+Tiger+Mother+Amy+Chua&i=stripbooks"
+      },
+      { title: "The Iconoclast: Shinzo Abe and the New Japan",
+        author: "Tobias Harris",
+        year: 2020,
+        link: "https://www.amazon.co.uk/s?k=The+Iconoclast+Shinzo+Abe+and+the+Tobias+Harris&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 12,
+    title: "Future Minded | How AI is Changing Our Society, Knowledge, Jobs, and the Future",
+    date: "2025-03-29",
+    url: "https://www.youtube.com/watch?v=TVju5uJIWho",
+    guest: "",
+    books: [
+      { title: "The Coming Wave",
+        author: "Mustafa Suleyman",
+        year: 2023,
+        link: "https://www.amazon.co.uk/s?k=The+Coming+Wave+Mustafa+Suleyman&i=stripbooks"
+      },
+      { title: "Smart Business",
+        author: "Ming Zeng",
+        year: 2018,
+        link: "https://www.amazon.co.uk/s?k=Smart+Business+Ming+Zeng&i=stripbooks"
+      },
+      { title: "Chip War",
+        author: "Chris Miller",
+        year: 2022,
+        link: "https://www.amazon.co.uk/s?k=Chip+War+Chris+Miller&i=stripbooks"
+      },
+      { title: "Invisible Rulers",
+        author: "Renée DiResta",
+        year: 2024,
+        link: "https://www.amazon.co.uk/s?k=Invisible+Rulers+Ren%C3%A9e+DiResta&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 11,
+    title: "Investing for the Future | Pandu Sjahrir on Leviathan, Human Capital & Lifelong Learning",
+    date: "2025-03-15",
+    url: "https://www.youtube.com/watch?v=6KnNSRkAPG0",
+    guest: "",
+    books: [
+      { title: "Leviathan: or The Matter, Forme and Power of a Commonwealth Ecclesiasticall and Civil",
+        author: "Thomas Hobbes",
+        year: 1651,
+        link: "https://www.amazon.co.uk/s?k=Leviathan+or+The+Matter+Forme+and+Thomas+Hobbes&i=stripbooks"
+      },
+      { title: "Security Analysis",
+        author: "Benjamin Graham and David Dodd",
+        year: 1934,
+        link: "https://www.amazon.co.uk/s?k=Security+Analysis+Benjamin+Graham&i=stripbooks"
+      },
+      { title: "The Intelligent Investor",
+        author: "Benjamin Graham",
+        year: 1949,
+        link: "https://www.amazon.co.uk/s?k=The+Intelligent+Investor+Benjamin+Graham&i=stripbooks"
+      },
+      { title: "How To Invest: Masters on the Craft",
+        author: "David Rubenstein",
+        year: 2022,
+        link: "https://www.amazon.co.uk/s?k=How+To+Invest+Masters+on+the+David+Rubenstein&i=stripbooks"
+      },
+      { title: "In Pursuit of the Perfect Portfolio",
+        author: "Andrew Lo and Stephen Foerster",
+        year: 2021,
+        link: "https://www.amazon.co.uk/s?k=In+Pursuit+of+the+Perfect+Portfolio+Andrew+Lo&i=stripbooks"
+      },
+      { title: "Tail Risk Management",
+        author: "Pascal vander Straeten",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Tail+Risk+Management+Pascal+vander+Straeten&i=stripbooks"
+      },
+      { title: "Noise: A Flaw in Human Judgment",
+        author: "Cass R. Sunstein, Daniel Kahneman, and Olivier Sibony",
+        year: 2021,
+        link: "https://www.amazon.co.uk/s?k=Noise+A+Flaw+in+Human+Judgment+Cass+R.+Sunstein&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 10,
+    title: "20 Years of Professional Growth (part 2) | Leadership Lessons from 2 Decades of Lawyering",
+    date: "2025-03-01",
+    url: "https://www.youtube.com/watch?v=kasoRl0Esxc",
+    guest: "",
+    books: [
+      { title: "Sous Chef",
+        author: "Michael Gibney",
+        year: 2014,
+        link: "https://www.amazon.co.uk/s?k=Sous+Chef+Michael+Gibney&i=stripbooks"
+      },
+      { title: "The Six Disciplines of Strategic Thinking",
+        author: "Michael D. Watkins",
+        year: 2024,
+        link: "https://www.amazon.co.uk/s?k=The+Six+Disciplines+of+Strategic+Thinking+Michael+D.+Watkins&i=stripbooks"
+      },
+      { title: "Setting the Table",
+        author: "Danny Meyer",
+        year: 2006,
+        link: "https://www.amazon.co.uk/s?k=Setting+the+Table+Danny+Meyer&i=stripbooks"
+      },
+      { title: "Art's Principles",
+        author: "Arthur Gensler",
+        year: 2015,
+        link: "https://www.amazon.co.uk/s?k=Art+s+Principles+Arthur+Gensler&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 9,
+    title: "Thinking Strategically | How to See the Big Picture and Lead with Clarity",
+    date: "2025-02-15",
+    url: "https://www.youtube.com/watch?v=4W5UYlqkTd4",
+    guest: "",
+    books: [
+      { title: "⁠ ⁠How Big Things Get Done",
+        author: "Bent Flyvbjerg & Dan Gardner",
+        year: 2023,
+        link: "https://www.amazon.co.uk/s?k=How+Big+Things+Get+Done+Bent+Flyvbjerg&i=stripbooks"
+      },
+      { title: "⁠ ⁠⁠Peter Ho's Menagerie",
+        author: "Peter Ho",
+        year: null,
+        link: "https://www.amazon.co.uk/s?k=Peter+Ho+s+Menagerie+Peter+Ho&i=stripbooks"
+      },
+      { title: "⁠ ⁠⁠The Legal Analyst",
+        author: "Ward Farnsworth",
+        year: 2007,
+        link: "https://www.amazon.co.uk/s?k=The+Legal+Analyst+Ward+Farnsworth&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 8,
+    title: "20 Years of Professional Growth | The Infinite Discovery of Law",
+    date: "2025-02-01",
+    url: "https://www.youtube.com/watch?v=sANL7DHvw5U",
+    guest: "",
+    books: [
+    ]
+  },
+
+  {
+    episode: 7,
+    title: "Thinking Analytically | Getting Better in Navigating Life's Decisions",
+    date: "2025-01-25",
+    url: "https://www.youtube.com/watch?v=mtyB_pEce-0",
+    guest: "",
+    books: [
+      { title: "Maxims for Thinking Analytically",
+        author: "Dan Levy",
+        year: 2021,
+        link: "https://www.amazon.co.uk/s?k=Maxims+for+Thinking+Analytically+Dan+Levy&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 6,
+    title: "The Path of Shokunin | The Relentless Pursuit of Mastery",
+    date: "2025-01-10",
+    url: "https://www.youtube.com/watch?v=fIhTDLek0_k",
+    guest: "",
+    books: [
+      { title: "Sushi Chef Sukibayashi Jiro",
+        author: "Shinzo Satomi",
+        year: 2016,
+        link: "https://www.amazon.co.uk/s?k=Sushi+Chef+Sukibayashi+Jiro+Shinzo+Satomi&i=stripbooks"
+      },
+      { title: "The Devil in The Kitchen",
+        author: "Marco Pierre White",
+        year: 2007,
+        link: "https://www.amazon.co.uk/s?k=The+Devil+in+The+Kitchen+Marco+Pierre+White&i=stripbooks"
+      },
+      { title: "Kitchen Confidential",
+        author: "Anthony Bourdain",
+        year: 2000,
+        link: "https://www.amazon.co.uk/s?k=Kitchen+Confidential+Anthony+Bourdain&i=stripbooks"
+      },
+      { title: "32 Yolks",
+        author: "Eric Ripert",
+        year: 2016,
+        link: "https://www.amazon.co.uk/s?k=32+Yolks+Eric+Ripert&i=stripbooks"
+      },
+      { title: "Letters to A Young Chef",
+        author: "Daniel Boulud",
+        year: 2003,
+        link: "https://www.amazon.co.uk/s?k=Letters+to+A+Young+Chef+Daniel+Boulud&i=stripbooks"
+      },
+      { title: "Sushi Shokunin",
+        author: "Andrea Fazzari",
+        year: 2020,
+        link: "https://www.amazon.co.uk/s?k=Sushi+Shokunin+Andrea+Fazzari&i=stripbooks"
+      },
+      { title: "Hell’s Kitchen (comic)",
+        author: "Nishimura Mitsuru",
+        year: 2008,
+        link: "https://www.amazon.co.uk/s?k=Hell+s+Kitchen+comic+Nishimura+Mitsuru&i=stripbooks"
+      },
+      { title: "Never Trust A Skinny Chef",
+        author: "Massimo Bottura",
+        year: 2014,
+        link: "https://www.amazon.co.uk/s?k=Never+Trust+A+Skinny+Chef+Massimo+Bottura&i=stripbooks"
+      },
+      { title: "Oishinbo (comic)",
+        author: "Tetsuya Kariya",
+        year: 1983,
+        link: "https://www.amazon.co.uk/s?k=Oishinbo+comic+Tetsuya+Kariya&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 5,
+    title: "What if God is an Economist? | Exploring The Wonders of Islamic Law Through Law & Economics",
+    date: "2024-12-21",
+    url: "https://www.youtube.com/watch?v=NT5s5Fuz1LQ",
+    guest: "",
+    books: [
+      { title: "Valuing Life",
+        author: "Cass Sunstein",
+        year: 2014,
+        link: "https://www.amazon.co.uk/s?k=Valuing+Life+Cass+Sunstein&i=stripbooks"
+      },
+      { title: "Economic Analysis of Law",
+        author: "Richard Posner",
+        year: 1973,
+        link: "https://www.amazon.co.uk/s?k=Economic+Analysis+of+Law+Richard+Posner&i=stripbooks"
+      },
+      { title: "Bidayatul Mujtahid",
+        author: "Ibnu Rusyd",
+        year: 1167,
+        link: "https://www.amazon.co.uk/s?k=Bidayatul+Mujtahid+Ibnu+Rusyd&i=stripbooks"
+      },
+      { title: "Islamic Legal Theories",
+        author: "Wael B. Hallaq",
+        year: 1997,
+        link: "https://www.amazon.co.uk/s?k=Islamic+Legal+Theories+Wael+B.+Hallaq&i=stripbooks"
+      },
+      { title: "The Epistle on Legal Theory",
+        author: "Al-Syafi’i",
+        year: 819,
+        link: "https://www.amazon.co.uk/s?k=The+Epistle+on+Legal+Theory+Al-Syafi%E2%80%99i&i=stripbooks"
+      },
+      { title: "Islamic Legal Methodology",
+        author: "Ahmad Kazemi Moussavi and Hamid Mavani",
+        year: 2003,
+        link: "https://www.amazon.co.uk/s?k=Islamic+Legal+Methodology+Ahmad+Kazemi+Moussavi&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 4,
+    title: "Final Fantasy and JRPGs | Having Fun Through Pain and Tribulations",
+    date: "2024-12-08",
+    url: "https://www.youtube.com/watch?v=IgmCofFeEjk",
+    guest: "",
+    books: [
+      { title: "A Guide to Japanese Role Playing Game",
+        author: "Bitmap Books in collaboration with Kurt Kalata",
+        year: 2021,
+        link: "https://www.amazon.co.uk/s?k=A+Guide+to+Japanese+Role+Playing+Bitmap+Books+in+collaboration+with+Kurt+Kalata&i=stripbooks"
+      },
+      { title: "The Sky - The Art of Final Fantasy",
+        author: "Yoshitaka Amano",
+        year: 2014,
+        link: "https://www.amazon.co.uk/s?k=The+Sky+The+Art+of+Final+Yoshitaka+Amano&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 3,
+    title: "A Story of Airplane, Katana, & Japanese Watermelon | Yusuf Didi Setiarto on Leadership",
+    date: "2024-11-23",
+    url: "https://www.youtube.com/watch?v=ApMM1WNGy1A",
+    guest: "",
+    books: [
+      { title: "Joglo Leadership: Gaya Kepemimpinan Bijak dan Harmoni",
+        author: "Yusuf Didi Setiarto",
+        year: 2022,
+        link: "https://www.amazon.co.uk/s?k=Joglo+Leadership+Gaya+Kepemimpinan+Bijak+dan+Yusuf+Didi+Setiarto&i=stripbooks"
+      },
+      { title: "Radical Candor",
+        author: "Kim Scott",
+        year: 2017,
+        link: "https://www.amazon.co.uk/s?k=Radical+Candor+Kim+Scott&i=stripbooks"
+      },
+      { title: "Execution: The Discipline of Getting Things Done",
+        author: "Larry Bossidy and Ram Charan",
+        year: 2002,
+        link: "https://www.amazon.co.uk/s?k=Execution+The+Discipline+of+Getting+Things+Larry+Bossidy&i=stripbooks"
+      },
+      { title: "What It Takes",
+        author: "Charles D. Ellis",
+        year: 2019,
+        link: "https://www.amazon.co.uk/s?k=What+It+Takes+Charles+D.+Ellis&i=stripbooks"
+      },
+      { title: "No Rules Rules",
+        author: "Reed Hasting and Erin Meyer",
+        year: 2020,
+        link: "https://www.amazon.co.uk/s?k=No+Rules+Rules+Reed+Hasting&i=stripbooks"
+      },
+      { title: "Managing The Professional Service Firm",
+        author: "David H. Maister",
+        year: 1993,
+        link: "https://www.amazon.co.uk/s?k=Managing+The+Professional+Service+Firm+David+H.+Maister&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 2,
+    title: "Scrooge McDuck and The True Meaning of Life",
+    date: "2024-11-10",
+    url: "https://www.youtube.com/watch?v=JcEtXq8Habs",
+    guest: "",
+    books: [
+      { title: "Battle Hymn of Tiger Mother",
+        author: "Amy Chua",
+        year: 2011,
+        link: "https://www.amazon.co.uk/s?k=Battle+Hymn+of+Tiger+Mother+Amy+Chua&i=stripbooks"
+      },
+      { title: "The Complete Life and Times of Scrooge McDuck",
+        author: "Don Rosa",
+        year: 2014,
+        link: "https://www.amazon.co.uk/s?k=The+Complete+Life+and+Times+of+Don+Rosa&i=stripbooks"
+      },
+      { title: "Uncle Scrooge and Donald Duck",
+        author: "Don Rosa",
+        year: 2014,
+        link: "https://www.amazon.co.uk/s?k=Uncle+Scrooge+and+Donald+Duck+Don+Rosa&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 1,
+    title: "Pilot Episode | A Prelude to The Joy of Reading",
+    date: "2024-10-27",
+    url: "https://www.youtube.com/watch?v=2sNs9AcvsSM",
+    guest: "",
+    books: [
+      { title: "The Complete Life and Times of Scrooge McDuck",
+        author: "Don Rosa",
+        year: 2014,
+        link: "https://www.amazon.co.uk/s?k=The+Complete+Life+and+Times+of+Don+Rosa&i=stripbooks"
+      },
+      { title: "A Guide to Japanese Role Playing Game",
+        author: "Bitmap Books in collaboration with Kurt Kalata",
+        year: 2021,
+        link: "https://www.amazon.co.uk/s?k=A+Guide+to+Japanese+Role+Playing+Bitmap+Books+in+collaboration+with+Kurt+Kalata&i=stripbooks"
+      },
+      { title: "The Sky - The Art of Final Fantasy",
+        author: "Yoshitaka Amano",
+        year: 2014,
+        link: "https://www.amazon.co.uk/s?k=The+Sky+The+Art+of+Final+Yoshitaka+Amano&i=stripbooks"
+      },
+      { title: "Alexander McQueen",
+        author: "Alexander McQueen",
+        year: 2015,
+        link: "https://www.amazon.co.uk/s?k=Alexander+McQueen+Alexander+McQueen&i=stripbooks"
+      },
+      { title: "Economic Analysis of Law",
+        author: "Richard Posner",
+        year: 1973,
+        link: "https://www.amazon.co.uk/s?k=Economic+Analysis+of+Law+Richard+Posner&i=stripbooks"
+      },
+      { title: "Bidayatul Mujtahid",
+        author: "Ibnu Rusyd",
+        year: 1167,
+        link: "https://www.amazon.co.uk/s?k=Bidayatul+Mujtahid+Ibnu+Rusyd&i=stripbooks"
+      },
+      { title: "Moral Psychology with Nietzsche",
+        author: "Brian Leiter",
+        year: 2019,
+        link: "https://www.amazon.co.uk/s?k=Moral+Psychology+with+Nietzsche+Brian+Leiter&i=stripbooks"
+      },
+      { title: "Law Without Values : The Life, Work, and Legacy of Justice Holmes",
+        author: "Albert W. Alschuler",
+        year: 2000,
+        link: "https://www.amazon.co.uk/s?k=Law+Without+Values+The+Life+Work+Albert+W.+Alschuler&i=stripbooks"
+      },
+      { title: "Sushi Chef Sukibayashi Jiro",
+        author: "Shinzo Satomi",
+        year: 2016,
+        link: "https://www.amazon.co.uk/s?k=Sushi+Chef+Sukibayashi+Jiro+Shinzo+Satomi&i=stripbooks"
+      },
+      { title: "Nei Jia Quan (Internal Martial Arts) edited",
+        author: "Jess O’Brien",
+        year: 2004,
+        link: "https://www.amazon.co.uk/s?k=Nei+Jia+Quan+Internal+Martial+Arts+Jess+O%E2%80%99Brien&i=stripbooks"
+      },
+      { title: "Kesan Para Sahabat tentang Widjojo Nitisastro",
+        author: "various contributors",
+        year: 2007,
+        link: "https://www.amazon.co.uk/s?k=Kesan+Para+Sahabat+Widjojo+Nitisastro"
+      },
+      { title: "Mitologi Yunani",
+        author: "Menelaos & Yannis Stephanides",
+        year: 2017,
+        link: "https://www.amazon.co.uk/s?k=Mitologi+Yunani+Menelaos&i=stripbooks"
+      },
+      { title: "The Partners",
+        author: "James B. Stewart",
+        year: 1983,
+        link: "https://www.amazon.co.uk/s?k=The+Partners+James+B.+Stewart&i=stripbooks"
+      },
+      { title: "Berserk, Written in Darkness",
+        author: "Quentin Boeton",
+        year: 2024,
+        link: "https://www.amazon.co.uk/s?k=Berserk+Written+in+Darkness+Quentin+Boeton&i=stripbooks"
+      },
+      { title: "Anxiety and The Equation",
+        author: "Eric Johnson",
+        year: 2018,
+        link: "https://www.amazon.co.uk/s?k=Anxiety+and+The+Equation+Eric+Johnson&i=stripbooks"
+      },
+      { title: "Against the Gods",
+        author: "Peter L. Bernstein",
+        year: 1996,
+        link: "https://www.amazon.co.uk/s?k=Against+the+Gods+Peter+L.+Bernstein&i=stripbooks"
+      },
+      { title: "Thinking in Bets",
+        author: "Annie Duke",
+        year: 2018,
+        link: "https://www.amazon.co.uk/s?k=Thinking+in+Bets+Annie+Duke&i=stripbooks"
+      },
+      { title: "Skin in The Game",
+        author: "Nassim Nicholas Taleb",
+        year: 2018,
+        link: "https://www.amazon.co.uk/s?k=Skin+in+The+Game+Nassim+Nicholas+Taleb&i=stripbooks"
+      }
+    ]
+  },
+
+  {
+    episode: 0,
+    title: "Remembering Death, Overcoming Grief: In Loving Memory of Our Beloved Mama, Erna Dwina",
+    date: "2024-12-28",
+    url: "https://www.youtube.com/watch?v=gWHjt4pQEuE",
+    guest: "",
+    books: [
+      { title: "In My Time of Dying",
+        author: "Sebastian Junger",
+        year: 2024,
+        link: "https://www.amazon.co.uk/s?k=In+My+Time+of+Dying+Sebastian+Junger&i=stripbooks"
+      },
+      { title: "Loneliness as a Way of Life",
+        author: "Thomas Dumm",
+        year: 2008,
+        link: "https://www.amazon.co.uk/s?k=Loneliness+as+a+Way+of+Life+Thomas+Dumm&i=stripbooks"
+      },
+      { title: "Feline Philosophy - Cats and The Meaning of Life",
+        author: "John Gray",
+        year: 2020,
+        link: "https://www.amazon.co.uk/s?k=Feline+Philosophy+Cats+and+The+Meaning+John+Gray&i=stripbooks"
+      }
+    ]
+  }
+
+];
+</script>
+
+<!-- ============= App logic ============= -->
+<script>
+(function () {
+  const DATA = window.READING_CHAMBER_DATA || [];
+  const $main = document.getElementById("main");
+  const $q = document.getElementById("q");
+  const $epFilter = document.getElementById("ep-filter");
+  const $clear = document.getElementById("clear");
+  const $count = document.getElementById("count");
+
+  // Stats
+  const allBooks = DATA.flatMap(ep => ep.books);
+  document.getElementById("stat-books").textContent = allBooks.length;
+  document.getElementById("stat-eps").textContent = DATA.length;
+  const authors = new Set();
+  allBooks.forEach(b => (b.author || "").split(/[,&]| and /).forEach(a => {
+    const t = a.trim().replace(/\(.*?\)/g, "").trim();
+    if (t && !/^eds?\.?$/i.test(t)) authors.add(t);
+  }));
+  document.getElementById("stat-authors").textContent = authors.size;
+
+  // Episode filter options (descending by episode number)
+  [...DATA].sort((a, b) => b.episode - a.episode).forEach(ep => {
+    const opt = document.createElement("option");
+    opt.value = String(ep.episode);
+    opt.textContent = "Ep. " + ep.episode + " — " + ep.title;
+    $epFilter.appendChild(opt);
+  });
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[c]));
+  }
+
+  function highlight(text, query) {
+    if (!query) return escapeHtml(text);
+    const esc = escapeHtml(text);
+    try {
+      const re = new RegExp("(" + query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig");
+      return esc.replace(re, '<mark style="background:rgba(212,160,93,.25);color:inherit;padding:0 2px;">$1</mark>');
+    } catch (e) { return esc; }
+  }
+
+  function render() {
+    const q = $q.value.trim().toLowerCase();
+    const epF = $epFilter.value;
+
+    let shown = 0;
+    let epsShown = 0;
+    const frag = document.createDocumentFragment();
+
+    const sorted = [...DATA].sort((a, b) => b.episode - a.episode);
+
+    sorted.forEach(ep => {
+      if (epF && String(ep.episode) !== epF) return;
+      const filteredBooks = ep.books.filter(b => {
+        if (!q) return true;
+        const hay = (b.title + " " + b.author).toLowerCase();
+        return hay.includes(q);
+      });
+      if (!filteredBooks.length) return;
+
+      epsShown += 1;
+      shown += filteredBooks.length;
+
+      const section = document.createElement("section");
+      section.className = "episode";
+      const dateBit = ep.date ? '<span>' + escapeHtml(ep.date) + '</span>' : "";
+      const linkBit = ep.url
+        ? '<span><a href="' + escapeHtml(ep.url) + '" target="_blank" rel="noopener">Watch on YouTube ↗</a></span>'
+        : "";
+      const guestBit = ep.guest ? '<span>with ' + escapeHtml(ep.guest) + '</span>' : "";
+
+      section.innerHTML = `
+        <div class="ep-head">
+          <div class="ep-num">EP.${String(ep.episode).padStart(2,"0")}</div>
+          <div>
+            <h2 class="ep-title">${escapeHtml(ep.title)}</h2>
+            <div class="ep-meta">${dateBit}${guestBit}${linkBit}</div>
+          </div>
+        </div>
+        <div class="books"></div>
+      `;
+      const $books = section.querySelector(".books");
+      filteredBooks.forEach((b, i) => {
+        const row = document.createElement("div");
+        row.className = "book";
+        const titleHtml = b.link
+          ? '<a href="' + escapeHtml(b.link) + '" target="_blank" rel="noopener">' + highlight(b.title, q) + '</a>'
+          : highlight(b.title, q);
+        row.innerHTML = `
+          <div class="idx">${String(i+1).padStart(2,"0")}</div>
+          <div class="title">${titleHtml}</div>
+          <div class="author">${highlight(b.author || "", q)}</div>
+          <div class="year">${b.year ? escapeHtml(String(b.year)) : ""}</div>
+        `;
+        $books.appendChild(row);
+      });
+      frag.appendChild(section);
+    });
+
+    $main.innerHTML = "";
+    if (shown === 0) {
+      const empty = document.createElement("p");
+      empty.className = "empty";
+      empty.textContent = "No books match. Try a broader search.";
+      $main.appendChild(empty);
+    } else {
+      $main.appendChild(frag);
+    }
+
+    $count.textContent =
+      shown + " book" + (shown===1?"":"s") +
+      " across " + epsShown + " episode" + (epsShown===1?"":"s");
+  }
+
+  // Debounce search
+  let t;
+  $q.addEventListener("input", () => { clearTimeout(t); t = setTimeout(render, 80); });
+  $epFilter.addEventListener("change", render);
+  $clear.addEventListener("click", () => { $q.value = ""; $epFilter.value = ""; render(); $q.focus(); });
+
+  render();
+})();
+</script>
+</body>
+</html>
