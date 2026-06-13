@@ -45,7 +45,7 @@ One-time setup:
 3. In the repo, go to **Settings → Pages**.
 4. Under "Source," choose **Deploy from a branch**, branch `main`, folder `/ (root)`.
 5. Wait ~1 minute. Your site is live at
-   `https://<your-username>.github.io/reading-chamber-archive/`.
+   `https://yusufrezak.github.io/reading-chamber-archive/`.
 
 To use a custom domain, add a `CNAME` file with the domain name and configure
 DNS per [GitHub's docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
