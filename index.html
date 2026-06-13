@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Reading Chamber Archive — books mentioned, by episode</title>
+<meta name="description" content="An unofficial, browsable archive of books discussed on The Reading Chamber YouTube channel by Pram & Pras.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #131817;
+    --bg-soft:   #1A1F1E;
+    --bg-row:    #1E2423;
+    --ink:       #EDE6D6;
+    --ink-dim:   #9A9183;
+    --ink-faint: #5E5851;
+    --accent:    #D4A05D;
+    --accent-hi: #F0BA72;
+    --rule:      #2A302F;
+    --rule-strong: #3A413F;
+    --shadow: 0 1px 0 var(--rule);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
+  a:hover, a:focus-visible { color: var(--accent-hi); border-bottom-color: var(--accent-hi); }
+  a:focus-visible { outline: 2px solid var(--accent-hi); outline-offset: 2px; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- Header ---- */
+  header.site {
+    padding: 56px 0 36px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin: 0 0 14px;
+  }
+  h1.site-title {
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.05;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+  h1.site-title em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .lede {
+    color: var(--ink-dim);
+    max-width: 56ch;
+    font-size: 16px;
+    margin: 0 0 24px;
+  }
+  .lede a { color: var(--ink); border-bottom-color: var(--rule-strong); }
+
+  /* ---- Stats ---- */
+  .stats {
+    display: flex;
+    gap: 28px;
+    margin: 28px 0 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .stats b {
+    display: block;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-size: 28px;
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  /* ---- Controls ---- */
+  .controls {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg);
+    padding: 18px 0 16px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 32px;
+  }
+  .controls-row {
+    display: grid;
+    grid-template-columns: 1fr 220px auto;
+    gap: 12px;
+    align-items: center;
+  }
+  @media (max-width: 720px) {
+    .controls-row { grid-template-columns: 1fr; }
+  }
+  .search, .filter {
+    background: var(--bg-soft);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    padding: 11px 14px;
+    font: inherit;
+    font-size: 15px;
+    border-radius: 0;
+    transition: border-color .15s;
+    width: 100%;
+  }
+  .search:focus, .filter:focus { outline: none; border-color: var(--accent); }
+  .search::placeholder { color: var(--ink-faint); }
+  .clear {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-dim);
+    padding: 11px 16px;
+    font: inherit;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color .15s, border-color .15s;
+  }
+  .clear:hover { color: var(--ink); border-color: var(--rule-strong); }
+  .result-count {
+    margin: 14px 0 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ---- Episode sections ---- */
+  main { padding-bottom: 80px; }
+  .episode {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .episode:last-child { border-bottom: none; }
+  .ep-head {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 24px;
+    align-items: baseline;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 600px) {
+    .ep-head { grid-template-columns: 1fr; gap: 8px; }
+  }
+  .ep-num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    padding-top: 8px;
+  }
+  .ep-title {
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-size: clamp(22px, 2.6vw, 30px);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .ep-meta {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .ep-meta a { color: var(--ink-dim); border-bottom-color: var(--rule-strong); }
+  .ep-meta a:hover { color: var(--accent-hi); border-bottom-color: var(--accent-hi); }
+
+  /* ---- Book list ---- */
+  .books {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-left: 120px;
+  }
+  @media (max-width: 600px) {
+    .books { margin-left: 0; }
+  }
+  .book {
+    display: grid;
+    grid-template-columns: 32px 1fr 180px 60px;
+    gap: 18px;
+    padding: 14px 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .book:last-child { border-bottom: 1px solid var(--rule); }
+  @media (max-width: 720px) {
+    .book {
+      grid-template-columns: 28px 1fr;
+      gap: 4px 14px;
+    }
+    .book .author, .book .year { grid-column: 2; }
+  }
+  .book .idx {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+  }
+  .book .title {
+    font-family: "IBM Plex Serif", serif;
+    font-size: 17px;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+  .book .title a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .book .title a:hover { color: var(--accent-hi); border-bottom-color: var(--accent-hi); }
+  .book .author {
+    font-size: 14px;
+    color: var(--ink-dim);
+  }
+  .book .year {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--ink-dim);
+    text-align: right;
+  }
+  @media (max-width: 720px) {
+    .book .year { text-align: left; }
+  }
+
+  /* ---- Empty / footer ---- */
+  .empty {
+    padding: 60px 0;
+    text-align: center;
+    color: var(--ink-dim);
+    font-family: "IBM Plex Serif", serif;
+    font-style: italic;
+    font-size: 18px;
+  }
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 32px 0 64px;
+    color: var(--ink-faint);
+    font-size: 13px;
+  }
+  footer p { margin: 0 0 8px; }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="site">
+    <p class="eyebrow">Unofficial Archive · The Reading Chamber</p>
+    <h1 class="site-title">Books from <em>The Reading Chamber</em></h1>
+    <p class="lede">
+      A browsable database of books discussed on
+      <a href="https://www.youtube.com/@TheReadingChamber-ID" target="_blank" rel="noopener">The Reading Chamber</a>,
+      the YouTube channel by Pramudya A. Oktavinanda and Prasetya Dwicahya. Search any title or author, or filter by episode.
+    </p>
+    <div class="stats">
+      <div><b id="stat-books">0</b>Books indexed</div>
+      <div><b id="stat-eps">0</b>Episodes covered</div>
+      <div><b id="stat-authors">0</b>Distinct authors</div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="controls-row">
+      <input type="search" id="q" class="search" placeholder="Search title or author…" autocomplete="off">
+      <select id="ep-filter" class="filter">
+        <option value="">All episodes</option>
+      </select>
+      <button id="clear" class="clear" type="button">Clear</button>
+    </div>
+    <p class="result-count" id="count"></p>
+  </div>
+
+  <main id="main"></main>
+
+  <footer>
+    <p>An independent project. Not affiliated with The Reading Chamber.</p>
+    <p>Spot a missing book or mistake? Open an issue on the GitHub repo.</p>
+  </footer>
+
+</div>
+
+<!-- =========================================================
+     DATA — add new episodes below.
+     Schema for each entry:
+       {
+         episode: <number>,
+         title: "Episode title",
+         date: "YYYY-MM-DD" or "" if unknown,
+         url: "https://www.youtube.com/watch?v=…" or "",
+         guest: "Guest name" or "",
+         books: [
+           { title, author, year, link, note? },
+           …
+         ]
+       }
+     Newest episodes first.
+========================================================= -->
+<script>
+window.READING_CHAMBER_DATA = [
+
+  {
+    episode: 43,
+    title: "Blueprint for Leadership: How to Run a Government",
+    date: "",
+    url: "",
+    guest: "",
+    books: [
+      { title: "Poor Economics: A Radical Rethinking of the Way to Fight Global Poverty",
+        author: "Abhijit V. Banerjee & Esther Duflo", year: 2011,
+        link: "https://www.amazon.co.uk/s?k=Poor+Economics+Banerjee+Duflo&i=stripbooks" },
+      { title: "Gambling on Development: Why Some Countries Win and Others Lose",
+        author: "Stefan Dercon", year: 2022,
+        link: "https://www.amazon.co.uk/s?k=Gambling+on+Development+Stefan+Dercon&i=stripbooks" },
+      { title: "How China Escaped the Poverty Trap",
+        author: "Yuen Yuen Ang", year: 2016,
+        link: "https://www.amazon.co.uk/s?k=How+China+Escaped+the+Poverty+Trap+Yuen+Yuen+Ang&i=stripbooks" },
+      { title: "The Power of Creative Destruction: Economic Upheavals and the Wealth of Nations",
+        author: "Philippe Aghion, Céline Antonin & Simon Bunel", year: 2021,
+        link: "https://www.amazon.co.uk/s?k=Power+of+Creative+Destruction+Aghion&i=stripbooks" },
+      { title: "Government versus Markets: The Changing Economic Role of the State",
+        author: "Vito Tanzi", year: 2011,
+        link: "https://www.amazon.co.uk/s?k=Government+versus+Markets+Vito+Tanzi&i=stripbooks" },
+      { title: "In the Service of the Republic: The Art and Science of Economic Policy",
+        author: "Vijay Kelkar & Ajay Shah", year: 2019,
+        link: "https://www.amazon.co.uk/s?k=In+the+Service+of+the+Republic+Kelkar+Shah&i=stripbooks" },
+      { title: "The Entrepreneurial State: Debunking Public vs. Private Sector Myths",
+        author: "Mariana Mazzucato", year: 2013,
+        link: "https://www.amazon.co.uk/s?k=Entrepreneurial+State+Mariana+Mazzucato&i=stripbooks" },
+      { title: "Power and Progress: Our Thousand-Year Struggle Over Technology and Prosperity",
+        author: "Daron Acemoglu & Simon Johnson", year: 2023,
+        link: "https://www.amazon.co.uk/s?k=Power+and+Progress+Acemoglu+Johnson&i=stripbooks" },
+      { title: "Shared Prosperity in a Fractured World",
+        author: "Dani Rodrik", year: 2025,
+        link: "https://www.amazon.co.uk/s?k=Shared+Prosperity+in+a+Fractured+World+Dani+Rodrik&i=stripbooks" },
+      { title: "Pengalaman Pembangunan Indonesia",
+        author: "Widjojo Nitisastro", year: 2010,
+        link: "https://www.goodreads.com/book/show/9418863-pengalaman-pembangunan-indonesia" },
+      { title: "Kesan Para Sahabat tentang Widjojo Nitisastro",
+        author: "Moh. Arsjad Anwar, Aris Ananta & Ari Kuncoro (eds.)", year: 2007,
+        link: "https://books.google.com/books/about/Kesan_para_sahabat_tentang_Widjojo_Nitis.html?id=sN3VgL-7HtcC" },
+      { title: "Berenang di Segara Kuntoro: Analekta Memoar",
+        author: "Handai Kuntoro & IDeA (eds.)", year: 2024,
+        link: "https://deliverology.org/umum/berenang-di-segara-kuntoro-analekta-memoar-tulisan-kebersamaan-dari-562-sosok" }
+    ]
+  },
+
+  {
+    episode: 39,
+    title: "Conspiracy and Dictatorship: Who Really Runs the World?",
+    date: "2026-04-17",
+    url: "https://www.youtube.com/watch?v=lqMedBcDGQ8",
+    guest: "",
+    books: [
+      { title: "The Dictator’s Handbook: Why Bad Behavior is Almost Always Good Politics",
+        author: "Bruce Bueno de Mesquita & Alastair Smith", year: 2011,
+        link: "https://www.amazon.co.uk/s?k=Dictators+Handbook+Bueno+de+Mesquita&i=stripbooks" },
+      { title: "How to Be a Dictator: The Cult of Personality in the Twentieth Century",
+        author: "Frank Dikötter", year: 2019,
+        link: "https://www.amazon.co.uk/s?k=How+to+Be+a+Dictator+Frank+Dikotter&i=stripbooks" },
+      { title: "The Dictators: 64 Dictators, 64 Authors",
+        author: "Various", year: 2024,
+        link: "https://www.amazon.co.uk/s?k=The+Dictators+64+Dictators+64+Authors&i=stripbooks" },
+      { title: "The Infernal Library: On Dictators, the Books They Wrote, and Other Catastrophes of Literacy",
+        author: "Daniel Kalder", year: 2018,
+        link: "https://www.amazon.co.uk/s?k=Infernal+Library+Daniel+Kalder&i=stripbooks" },
+      { title: "How to Feed a Dictator",
+        author: "Witold Szabłowski", year: 2020,
+        link: "https://www.amazon.co.uk/s?k=How+to+Feed+a+Dictator+Szablowski&i=stripbooks" },
+      { title: "Hidden Games: The Surprising Power of Game Theory to Explain Irrational Human Behaviour",
+        author: "Moshe Hoffman & Erez Yoeli", year: 2022,
+        link: "https://www.amazon.co.uk/s?k=Hidden+Games+Hoffman+Yoeli&i=stripbooks" },
+      { title: "Arms and Influence",
+        author: "Thomas C. Schelling", year: 1966,
+        link: "https://www.amazon.co.uk/s?k=Arms+and+Influence+Schelling&i=stripbooks" },
+      { title: "The End of the World Is Just the Beginning: Mapping the Collapse of Globalization",
+        author: "Peter Zeihan", year: 2022,
+        link: "https://www.amazon.co.uk/s?k=End+of+the+World+Is+Just+the+Beginning+Zeihan&i=stripbooks" }
+    ]
+  },
+
+  {
+    episode: 38,
+    title: "Conspiracy or Power Play: Are We Run by Secret Organizations?",
+    date: "2026-04-03",
+    url: "https://www.youtube.com/watch?v=ez4EitV9TvU",
+    guest: "",
+    books: [
+      { title: "Conspiracy Theories and Other Dangerous Ideas",
+        author: "Cass R. Sunstein", year: 2014,
+        link: "https://www.amazon.co.uk/s?k=Conspiracy+Theories+Other+Dangerous+Ideas+Sunstein&i=stripbooks" },
+      { title: "The Chaos Machine: The Inside Story of How Social Media Rewired Our Minds and Our World",
+        author: "Max Fisher", year: 2022,
+        link: "https://www.amazon.co.uk/s?k=Chaos+Machine+Max+Fisher&i=stripbooks" },
+      { title: "The Death of Expertise: The Campaign Against Established Knowledge",
+        author: "Tom Nichols", year: 2017,
+        link: "https://www.amazon.co.uk/s?k=Death+of+Expertise+Tom+Nichols&i=stripbooks" },
+      { title: "The Power Elite",
+        author: "C. Wright Mills", year: 1956,
+        link: "https://www.amazon.co.uk/s?k=Power+Elite+C+Wright+Mills&i=stripbooks" },
+      { title: "Power, Pleasure, and Profit: Insatiable Appetites from Machiavelli to Madison",
+        author: "David Wootton", year: 2018,
+        link: "https://www.amazon.co.uk/s?k=Power+Pleasure+Profit+David+Wootton&i=stripbooks" },
+      { title: "Very Important People: Status and Beauty in the Global Party Circuit",
+        author: "Ashley Mears", year: 2020,
+        link: "https://www.amazon.co.uk/s?k=Very+Important+People+Ashley+Mears&i=stripbooks" }
+    ]
+  }
+
+];
+</script>
+
+<!-- ============= App logic ============= -->
+<script>
+(function () {
+  const DATA = window.READING_CHAMBER_DATA || [];
+  const $main = document.getElementById("main");
+  const $q = document.getElementById("q");
+  const $epFilter = document.getElementById("ep-filter");
+  const $clear = document.getElementById("clear");
+  const $count = document.getElementById("count");
+
+  // Stats
+  const allBooks = DATA.flatMap(ep => ep.books);
+  document.getElementById("stat-books").textContent = allBooks.length;
+  document.getElementById("stat-eps").textContent = DATA.length;
+  const authors = new Set();
+  allBooks.forEach(b => (b.author || "").split(/[,&]| and /).forEach(a => {
+    const t = a.trim().replace(/\(.*?\)/g, "").trim();
+    if (t && !/^eds?\.?$/i.test(t)) authors.add(t);
+  }));
+  document.getElementById("stat-authors").textContent = authors.size;
+
+  // Episode filter options (descending by episode number)
+  [...DATA].sort((a, b) => b.episode - a.episode).forEach(ep => {
+    const opt = document.createElement("option");
+    opt.value = String(ep.episode);
+    opt.textContent = "Ep. " + ep.episode + " — " + ep.title;
+    $epFilter.appendChild(opt);
+  });
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[c]));
+  }
+
+  function highlight(text, query) {
+    if (!query) return escapeHtml(text);
+    const esc = escapeHtml(text);
+    try {
+      const re = new RegExp("(" + query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig");
+      return esc.replace(re, '<mark style="background:rgba(212,160,93,.25);color:inherit;padding:0 2px;">$1</mark>');
+    } catch (e) { return esc; }
+  }
+
+  function render() {
+    const q = $q.value.trim().toLowerCase();
+    const epF = $epFilter.value;
+
+    let shown = 0;
+    let epsShown = 0;
+    const frag = document.createDocumentFragment();
+
+    const sorted = [...DATA].sort((a, b) => b.episode - a.episode);
+
+    sorted.forEach(ep => {
+      if (epF && String(ep.episode) !== epF) return;
+      const filteredBooks = ep.books.filter(b => {
+        if (!q) return true;
+        const hay = (b.title + " " + b.author).toLowerCase();
+        return hay.includes(q);
+      });
+      if (!filteredBooks.length) return;
+
+      epsShown += 1;
+      shown += filteredBooks.length;
+
+      const section = document.createElement("section");
+      section.className = "episode";
+      const dateBit = ep.date ? '<span>' + escapeHtml(ep.date) + '</span>' : "";
+      const linkBit = ep.url
+        ? '<span><a href="' + escapeHtml(ep.url) + '" target="_blank" rel="noopener">Watch on YouTube ↗</a></span>'
+        : "";
+      const guestBit = ep.guest ? '<span>with ' + escapeHtml(ep.guest) + '</span>' : "";
+
+      section.innerHTML = `
+        <div class="ep-head">
+          <div class="ep-num">EP.${String(ep.episode).padStart(2,"0")}</div>
+          <div>
+            <h2 class="ep-title">${escapeHtml(ep.title)}</h2>
+            <div class="ep-meta">${dateBit}${guestBit}${linkBit}</div>
+          </div>
+        </div>
+        <div class="books"></div>
+      `;
+      const $books = section.querySelector(".books");
+      filteredBooks.forEach((b, i) => {
+        const row = document.createElement("div");
+        row.className = "book";
+        const titleHtml = b.link
+          ? '<a href="' + escapeHtml(b.link) + '" target="_blank" rel="noopener">' + highlight(b.title, q) + '</a>'
+          : highlight(b.title, q);
+        row.innerHTML = `
+          <div class="idx">${String(i+1).padStart(2,"0")}</div>
+          <div class="title">${titleHtml}</div>
+          <div class="author">${highlight(b.author || "", q)}</div>
+          <div class="year">${b.year ? escapeHtml(String(b.year)) : ""}</div>
+        `;
+        $books.appendChild(row);
+      });
+      frag.appendChild(section);
+    });
+
+    $main.innerHTML = "";
+    if (shown === 0) {
+      const empty = document.createElement("p");
+      empty.className = "empty";
+      empty.textContent = "No books match. Try a broader search.";
+      $main.appendChild(empty);
+    } else {
+      $main.appendChild(frag);
+    }
+
+    $count.textContent =
+      shown + " book" + (shown===1?"":"s") +
+      " across " + epsShown + " episode" + (epsShown===1?"":"s");
+  }
+
+  // Debounce search
+  let t;
+  $q.addEventListener("input", () => { clearTimeout(t); t = setTimeout(render, 80); });
+  $epFilter.addEventListener("change", render);
+  $clear.addEventListener("click", () => { $q.value = ""; $epFilter.value = ""; render(); $q.focus(); });
+
+  render();
+})();
+</script>
+</body>
+</html>
